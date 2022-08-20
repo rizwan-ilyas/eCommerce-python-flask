@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="static/style1.css">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  	<script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+
+
+
+</head>
+<body>
+
+    <input type="checkbox" id="sidebar-toggle">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3 class="brand">
+                <span class="ti-unlink"></span>
+                <span>Seller</span>
+            </h3>
+            <label for="sidebar-toggle" class="ti-menu-alt"></label>
+        </div>
+
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="/">
+                        <span class="ti-home"></span>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="ti-dashboard"></span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/addProduct">
+                        <span class="ti-upload"></span>
+                        <span>Add Product</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/logout">
+                        <span class="ti-power-off"></span>
+                        <span>Log Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        var isOrderClicked=false
+        var isProductClicked=false
+
+        function loadOrder(){
+            var myData
+            if (isOrderClicked==true){
+                $('#orderdiv').hide("slow")
+                isOrderClicked=false
+            }
+            else{
+                $('#orderdiv').show("2000")
+            var tb=[];
+            var data = 'users';
+                         $.ajax({type:"GET",
+                                url:"/sellerorder",
+                                data:data,
+
+                             success: function(result){
+                                for (let obj of result) {
+                                    obj.push("<button id="+obj[0]+ " class='btn btn-warning' onclick='deliver(this)' value='Deliverd'>Delivered</button>")
+                                    tb.push(obj)
+                                }
+
+                                 myData = tb
+                                 console.log(myData)
+                                 //alert(myData)
+                                 if(myData !=null || myData !=""){
+
+                                    table = $('#ordertable').DataTable( {
+                                        data: myData ,destroy: true,
+                                        columns: [
+                                            { title: "Id" },
+                                            { title: "Name" },
+                                            { title: "Email" },
+                                            { title: "Buyer Name" },
+                                            { title: "Address" },
+                                            { title: "Shipment" },
+                                            { title: "# Products" },
+                                           { title: "Edit" },
+                                        ]
+                                    } );
+                                }
+
+                          }});
+                         isOrderClicked=true
+                            updateColor(2)
+            }
+
+        }
+
+        function loadProducts(a){
+            var myData
+            if (isProductClicked==true){
+                $('#productdiv').hide("slow")
+                isProductClicked=false
+            }
+            else{
+                $('#productdiv').show("2000")
+            var tb=[];
+            var data = 'users';
+                         $.ajax({type:"GET",
+                                url:"/sellerproducts",
+                                data:data,
+                             success: function(result){
+                                for (let obj of result) {
+                                    obj.push("<button id="+obj[0]+"_"+obj[4]+ " class='btn btn-warning' onclick='delproduct(this)' value='Delete'>delete</button>")
+                                    tb.push(obj)
+                                }
+                                 myData = tb
+                                 console.log(myData)
+                                 //alert(myData)
+                                 if(myData !=null || myData !=""){
+
+                                    table = $('#producttable').DataTable( {
+                                        data: myData ,destroy: true,
+                                        columns: [
+                                            { title: "Id" },
+                                            { title: "Name" },
+                                            { title: "Price" },
+                                            { title: "Catagory" },
+                                            { title: "Shipement Charges" },
+                                            { title: "Entry Date" },
+                                           { title: "Edit" },
+                                        ]
+                                    } );
+                                }
+
+                          }});
+                         isProductClicked=true
+
+            }
+
+        }
+
+        function deliver(a){
+            $.ajax({
+                                type:"POST",
+                                contentType:"application/json;charset=utf-8",
+                                url:"/delivered",
+                                data:JSON.stringify(a.id),
+                                success:function (){
+                                    console.log("Success!")
+                            },
+                                dataType:"json"
+                            });
+            console.log("Deliverd")
+                        //document.getElementById(a.id).parentNode.parentNode.remove()
+        }
+
+
+        function deluser(a){
+                        $.ajax({
+                                type:"POST",
+                                contentType:"application/json;charset=utf-8",
+                                url:"/delUser",
+                                data:JSON.stringify(a.id),
+                                success:function (){
+                                    console.log("Success!")
+                            },
+                                dataType:"json"
+                            });
+                        document.getElementById(a.id).parentNode.parentNode.remove()
+
+        }
+
+        function delproduct(a){
+                        $.ajax({
+                                type:"POST",
+                                contentType:"application/json;charset=utf-8",
+                                url:"/delProduct",
+                                data:JSON.stringify(a.id),
+                                success:function (){
+                                    console.log("Success!")
+                            },
+                                dataType:"json"
+                            });
+                        document.getElementById(a.id).parentNode.parentNode.remove()
+                        updatetotals()
+        }
+
+        function updatetotals(){
+            let a= document.getElementById('noProduct').innerText-1
+                $('#noProduct').text(a)
+        }
+
+    </script>
+
+
+
+
+
+    <div class="main-content">
+        <main>
+
+            <h2 class="dash-title">Dashboard</h2>
+
+            <div class="dash-cards">
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="ti-control-record"></span>
+                        <div>
+                            <h5>Orders</h5>
+                            <h4 id="noOrder">{{ total['orders'] }}</h4>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" onclick="loadOrder()">View all</a>
+                    </div>
+                    <div id="orderdiv" class="card-footer">
+                    <table id="ordertable" class="table table-hover" width="100%"></table>
+                    </div>
+
+                </div>
+
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="ti-dashboard"></span>
+                        <div>
+                            <h5>Products</h5>
+                            <h4 id="noProduct">{{ total['products'] }}</h4>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" onclick="loadProducts()">View all</a>
+                    </div>
+                    <div id="productdiv" class="card-footer">
+                    <table id="producttable" class="table table-hover" width="100%"></table>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+</body>
+</html>

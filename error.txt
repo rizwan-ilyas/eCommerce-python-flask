@@ -1,0 +1,31 @@
+order page
+
+
+
+
+
+
+
+
+
+
+ <script>
+
+
+                                            function cart(){
+                                                var effect = document.getElementById({{ x['cart']['cart_id'] }});
+                                                var qty = effect.value;
+                                                if( !isNaN( {{ x['cart']['cart_id'] }} ) &amp &amp &gt {{ x['cart']['cart_id'] }} ) effect.value--;
+                                                let a="{{ x['product'].price }}";
+                                                //let b=;
+                                                let t=a*qty;
+                                                document.getElementsByName({{ x['cart']['cart_id'] }}).textContent=t;
+                                                return false;
+                                            }
+
+
+                                            </script>
+
+
+
+

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title  -->
+    <title>E Mart</title>
+
+    <!-- Favicon  -->
+    <link rel="icon" href="static/img/core-img/favicon.ico">
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="static/css/core-style.css">
+    <link rel="stylesheet" href="static/style.css">
+
+    <!-- Responsive CSS -->
+    <link href="static/css/responsive.css" rel="stylesheet">
+
+    <style>
+        .nav-side-menu a
+        {
+            width:95%;
+            margin: 5px;
+            border: 1px solid red;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .nav-side-menu a:link,
+        .nav-side-menu a:visited {
+            background-color:white;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            color: red;
+        }
+
+        .nav-side-menu a:hover,
+        a:active {
+            background-color: red;
+            color: white;
+        }
+    </style>
+
+
+
+
+</head>
+
+<body>
+    <div class="catagories-side-menu">
+        <!-- Close Icon -->
+        <div id="sideMenuClose">
+            <i class="ti-close"></i>
+        </div>
+        <!--  Side Nav  -->
+        <div class="nav-side-menu">
+            <div class="menu-list" style="text-align: center;display: block">
+                {% if data1!=None %}
+                    <img class="rounded-circle mt-5" width="150px" id="imge" src="static/upload/profiles/{{ data1[3] }}" alt="Profile-Picture">
+                    <br/><span class="font-weight-bold">{{ data1[2] }}</span><br/>
+                    <span>{{ data1[0] }}</span>
+
+                {% endif %}
+                {% if data1==None %}
+                    <h6>Let's Connect</h6>
+                    <a href="/login">Login</a>
+                    <a href="/signup">Sign Up</a>
+                {% endif %}
+
+                <a href="/logout">Log Out</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="wrapper">
+
+        <!-- ****** Header Area Start ****** -->
+        <header class="header_area">
+            <!-- Top Header Area Start -->
+            <div class="top_header_area">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center justify-content-end">
+
+                        <div class="col-12 col-lg-7">
+                            <div class="top_single_area d-flex align-items-center">
+                                <!-- Logo Area -->
+                                <div class="top_logo">
+                                    <a href="#"><img src="static/img/core-img/logo.png" alt=""></a>
+                                </div>
+                                <!-- Cart & Menu Area -->
+                                <div class="header-cart-menu d-flex align-items-center ml-auto">
+                                    <!-- Cart Area -->
+
+                                    <div class="header-right-side-menu ml-15">
+                                        <a href="#" id="sideMenuBtn"><i class="ti-menu" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Header Area End -->
+            <div class="main_header_area">
+                <div class="container h-100">
+                    <div class="row h-100">
+                        <div class="col-12 d-md-flex justify-content-between">
+                            <!-- Header Social Area -->
+                            <div class="header-social-area">
+                                <a href="#"><span class="karl-level">Share</span> <i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                            </div>
+                            <!-- Menu Area -->
+                            <div class="main-menu-area">
+                                <nav class="navbar navbar-expand-lg align-items-start">
+
+                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#karl-navbar" aria-controls="karl-navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"><i class="ti-menu"></i></span></button>
+
+                                    <div class="collapse navbar-collapse align-items-start collapse" id="karl-navbar">
+                                        <ul class="navbar-nav animated" id="nav">
+                                            <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+                                            <li class="nav-item active"><a class="nav-link" href="/aboutUs">About Us</a></li>
+                                            <li class="nav-item active"><a class="nav-link" href="/cart">Cart</a></li>
+                                            {% if data1[1]=="seller" %}
+                                                <li class="nav-item"><a class="nav-link" href="/seller">DashBoard</a></li>
+                                            {% endif %}
+                                            {% if data1[1]!="seller" %}
+                                                <li class="nav-item"><a class="nav-link" href="/order">Orders</a></li>
+                                            {% endif %}
+
+                                            <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- Help Line -->
+                            <div class="help-line">
+
+                                <a href="https://api.whatsapp.com/send/?phone=%2B923077671304&text&app_absent=0" target="_blank"><i class="fa fa-whatsapp"></i> +92 307 7671304</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- ****** Header Area End ****** -->
+
+        <!-- ****** Top Discount Area Start ****** -->
+        <!-- <section class="top-discount-area d-md-flex align-items-center">
+             Single Discount Area -->
+           
+        <!-- ****** Top Discount Area End ****** -->
+
+        <!-- ****** Welcome Slides Area Start ****** -->
+        
+        <!-- ****** Welcome Slides Area End ****** -->
+
+        <!-- ****** Top Catagory Area End ****** -->
+
+        <!-- ****** Quick View Modal Area Start ****** -->
+        <div class="modal fade" id="quickview" tabindex="-1" role="dialog" aria-labelledby="quickview" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                    <div class="modal-body">
+                        <div class="quickview_body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-lg-5">
+                                        <div class="quickview_pro_img">
+                                            <img src="" id="descimg" alt="Product-Image">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-7">
+                                        <div class="quickview_pro_des">
+                                            <h4 class="title" id="p_name"></h4>
+                                            <div class="top_seller_product_rating mb-15">
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                            </div>
+
+                                            <h5 class="price" id="p_price"></h5>
+                                            <p id="p_desc"></p>
+
+                                        </div>
+                                        <!-- Add to Cart Form -->
+
+                                            <div class="quantity">
+                                                <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+
+                                                <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
+
+                                                <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                            </div>
+                                            <button name="addtocart" class="cart-submit" onclick="addtocart(this)">Add to cart</button>
+
+
+
+                                        <div class="share_wf mt-30">
+                                            <p>Share With Friend</p>
+                                            <div class="_icon">
+                                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ****** Quick View Modal Area End ****** -->
+
+        <!-- ****** New Arrivals Area Start ****** -->
+        <section class="new_arrivals_area section_padding_5_0 clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section_heading text-center">
+                            <h2>New Arrivals</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="karl-projects-menu mb-100">
+                <div class="text-center portfolio-menu">
+                    <button class="btn active" data-filter="*">ALL</button>
+                    <button class="btn" data-filter=".mobiles">MOBILES</button>
+                    <button class="btn" data-filter=".electronics">ELECTRONICS</button>
+                    <button class="btn" data-filter=".accessories">ACCESSORIES</button>
+                    <button class="btn" data-filter=".women">WOMAN</button>
+                    <button class="btn" data-filter=".man">MAN</button>
+                    <button class="btn" data-filter=".shoes">SHOES</button>
+                    <button class="btn" data-filter=".kids">KIDS</button>
+                </div>
+            </div>
+
+
+
+            <div class="container">
+                <div class="row karl-new-arrivals">
+                    {% for x in data %}
+                    <!-- Single gallery Item Start -->
+                    <div class="col-12 col-sm-6 col-md-4 single_gallery_item {{ x.catagory }} wow fadeInUpBig" id="{{ loop.index }}" data-wow-delay="0.2s">
+                        <!-- Product Image -->
+                        <div class="product-img">
+                            <img src="static/upload/products/{{ x.image }}" alt="" class="abc">
+                            <div class="product-quicview">
+                                <a href="#" data-toggle="modal" onclick="modalClicked('{{ x.image }}','{{ x.name }}','{{ x.price }}','{{ x.discription }}','{{ x.id }}')" data-target="#quickview"><i class="ti-plus"></i></a>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+                        <script>
+                            function modalClicked(image,name,price,desc,id){
+
+                                document.getElementById('descimg').src="/static/upload/products/"+image
+                                document.getElementById('p_name').innerHTML=name
+                                document.getElementById('p_desc').innerHTML=desc
+                                document.getElementById('p_price').innerHTML=price
+                                document.getElementsByName('addtocart')[0].id=id
+
+                            }
+
+                            function addtocart(b){
+                                var val=document.getElementById('qty').value
+                                 $.ajax({
+                                type:"POST",
+                                contentType:"application/json;charset=utf-8",
+                                url:"/addToCart/"%b.id,
+                                data:JSON.stringify(val),
+                                success:function (){
+                                   console.log("Changed Successfully");
+                            },
+                                dataType:"json"
+                            });
+
+
+
+                            }
+
+
+                        </script>
+
+                        <!-- Product Description -->
+                        <div class="product-description">
+                            <h4 class="product-prices">Rs.{{ x.price }}</h4>
+                                <p class="product-text">{{ x.name }}</p>
+                            <!-- Add to Cart -->
+                            <a href="{{ '/addToCart/%s'%x.id }}" class="add-to-cart-btn">ADD TO CART</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </section>
+        <!-- ****** New Arrivals Area End ****** -->
+
+        <!-- ****** Offer Area Start ****** -->
+
+        <!-- ****** Offer Area End ****** -->
+
+        <!-- ****** Popular Brands Area Start ****** -->
+        <section class="karl-testimonials-area section_padding_100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section_heading text-center">
+                            <h2>Our Team is Our Prides</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8">
+                        <div class="karl-testimonials-slides owl-carousel">
+
+                            <!-- Single Testimonial Area -->
+                            <div class="single-testimonial-area text-center">
+                                <span class="quote">"</span>
+                                <h6>Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. Aliquam finibus nulla quam, a iaculis justo finibus non. Suspendisse in fermentum nunc.Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. </h6>
+                                <div class="testimonial-info d-flex align-items-center justify-content-center">
+                                    <div class="tes-thumbnail">
+                                        <img src="static/img/bg-img/tes-1.jpg" alt="">
+                                    </div>
+                                    <div class="testi-data">
+                                        <p>Muhammad Rizwan</p>
+                                        <span>Developer</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Testimonial Area -->
+                            <div class="single-testimonial-area text-center">
+                                <span class="quote">"</span>
+                                <h6>Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. Aliquam finibus nulla quam, a iaculis justo finibus non. Suspendisse in fermentum nunc.Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. </h6>
+                                <div class="testimonial-info d-flex align-items-center justify-content-center">
+                                    <div class="tes-thumbnail">
+                                        <img src="static/img/bg-img/tes-1.jpg" alt="">
+                                    </div>
+                                    <div class="testi-data">
+                                        <p>Huzaifa Yaseen</p>
+                                        <span>Security Manager</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Testimonial Area -->
+                            <div class="single-testimonial-area text-center">
+                                <span class="quote">"</span>
+                                <h6>Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. Aliquam finibus nulla quam, a iaculis justo finibus non. Suspendisse in fermentum nunc.Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. </h6>
+                                <div class="testimonial-info d-flex align-items-center justify-content-center">
+                                    <div class="tes-thumbnail">
+                                        <img src="static/img/bg-img/tes-1.jpg" alt="">
+                                    </div>
+                                    <div class="testi-data">
+                                        <p>Hafiz Usman Ali</p>
+                                        <span>Admin</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Single Testimonial Area -->
+                            <div class="single-testimonial-area text-center">
+                                <span class="quote">"</span>
+                                <h6>Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. Aliquam finibus nulla quam, a iaculis justo finibus non. Suspendisse in fermentum nunc.Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. </h6>
+                                <div class="testimonial-info d-flex align-items-center justify-content-center">
+                                    <div class="tes-thumbnail">
+                                        <img src="static/img/bg-img/tes-1.jpg" alt="">
+                                    </div>
+                                    <div class="testi-data">
+                                        <p>Fajar Dar</p>
+                                        <span>Designing Manager</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Testimonial Area -->
+                            <div class="single-testimonial-area text-center">
+                                <span class="quote">"</span>
+                                <h6>Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. Aliquam finibus nulla quam, a iaculis justo finibus non. Suspendisse in fermentum nunc.Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. </h6>
+                                <div class="testimonial-info d-flex align-items-center justify-content-center">
+                                    <div class="tes-thumbnail">
+                                        <img src="static/img/bg-img/tes-1.jpg" alt="">
+                                    </div>
+                                    <div class="testi-data">
+                                        <p>Esha</p>
+                                        <span>Sales Manager</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- ****** Popular Brands Area End ****** -->
+
+        <!-- ****** Footer Area Start ****** -->
+        <footer class="footer_area">
+            <div class="container">
+                <div class="row">
+                    <!-- Single Footer Area Start -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="single_footer_area">
+                            <div class="footer-logo">
+                                <img src="static/img/core-img/logo.png" alt="">
+                            </div>
+                            <div class="copywrite_text d-flex align-items-center">
+                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Footer Area Start -->
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-2">
+                        <div class="single_footer_area">
+                            <ul class="footer_widget_menu">
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">Faq</a></li>
+                                <li><a href="#">Returns</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Single Footer Area Start -->
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-2">
+                        <div class="single_footer_area">
+                            <ul class="footer_widget_menu">
+                                <li><a href="#">My Account</a></li>
+                                <li><a href="#">Shipping</a></li>
+                                <li><a href="#">Our Policies</a></li>
+                                <li><a href="#">Afiliates</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Single Footer Area Start -->
+                    <div class="col-12 col-lg-5">
+                        <div class="single_footer_area">
+                            <div class="footer_heading mb-30">
+                                <h6>Subscribe to our newsletter</h6>
+                            </div>
+                            <div class="subscribtion_form">
+                                <form action="#" method="post">
+                                    <input type="email" name="mail" class="mail" placeholder="Your email here">
+                                    <button type="submit" class="submit">Subscribe</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="line"></div>
+
+                <!-- Footer Bottom Area Start -->
+                <div class="footer_bottom_area">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="footer_social_area text-center">
+                                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- ****** Footer Area End ****** -->
+    </div>
+    <!-- /.wrapper end -->
+
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="static/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="static/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="static/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="static/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="static/js/active.js"></script>
+
+    <script src="static/js/index.js"></script>
+
+</body>
+
+</html>

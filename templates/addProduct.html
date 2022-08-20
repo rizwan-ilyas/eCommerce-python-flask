@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Add Product</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700"/>
+    <!-- https://fonts.google.com/specimen/Roboto -->
+    <link rel="stylesheet" href="static/css/fontawesome.min.css"/>
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="static/jquery-ui-datepicker/jquery-ui.min.css" type="text/css"/>
+    <!-- http://api.jqueryui.com/datepicker/ -->
+    <link rel="stylesheet" href="static/css/bootstrap.min.css"/>
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="static/css/templatemo-style.css">
+    <!--
+	Product Admin CSS Template
+	https://templatemo.com/tm-524-product-admin
+	-->
+</head>
+
+<body>
+<div class="container tm-mt-big tm-mb-big my-3">
+    <div class="row">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+            <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                <form action="/addProduct" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="tm-block-title d-inline-block">Add Product</h2>
+                    </div>
+                </div>
+                    <h4 style="color: red">{{ error }} &nbsp;&nbsp;<a href="/seller">Goto Dashboard</a></h4><br/><br/>
+
+
+                    <div class="row tm-edit-product-row">
+
+
+                        <div class="col-xl-6 col-lg-6 col-md-12">
+
+                            <div class="form-group mb-3">
+                                <label for="name">Product Name
+                                </label>
+                                <input type="text" name="name" class="form-control validate" required/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="price">Product Price
+                                </label>
+                                <input type="text" name="price" class="form-control validate" required/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="price">Product Quantity
+                                </label>
+                                <input type="number" name="quantity" class="form-control validate" required/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="description">Description</label>
+                                <textarea name="description" placeholder="enter details" class="form-control validate"
+                                          required></textarea>
+
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="description">Discount</label>
+                                <input name="discount" placeholder="enter discount price" class="form-control validate"
+                                       required>
+
+                            </div>
+
+                            <div class="form-group mb-3 my-3">
+                                <label for="category">Category</label>
+                                <select name="catagory" class="form-control validate" required>
+                                    <option value="mobiles">MOBILES</option>
+                                    <option value="electronics">ELECTRONICS</option>
+                                    <option value="accessories">ACCESSORIES</option>
+                                    <option value="woman">WOMAN</option>
+                                    <option value="man">MAN</option>
+                                    <option value="shoes">SHOES</option>
+                                    <option value="kids">KIDS</option>
+                                </select>
+
+                            </div>
+
+
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+
+                            <div class="custom-file mt-3 mb-3">
+                                <input type="file" name="product_image" class="form-control validate"/>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <input type="submit" name="sub" value="Add Product Now"
+                                   class="btn btn-primary btn-block text-uppercase">
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="static/js/jquery-3.3.1.min.js"></script>
+<!-- https://jquery.com/download/ -->
+<script src="static/jquery-ui-datepicker/jquery-ui.min.js"></script>
+<!-- https://jqueryui.com/download/ -->
+<script src="static/js/bootstrap.min.js"></script>
+<!-- https://getbootstrap.com/ -->
+<script>
+    $(function () {
+        $("#expire_date").datepicker();
+    });
+</script>
+</body>
+
+</html>

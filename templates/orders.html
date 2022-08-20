@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title  -->
+    <title>Your Cart</title>
+
+    <!-- Favicon  -->
+    <link rel="icon" href="static/img/core-img/favicon.ico">
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="static/css/core-style.css">
+    <link rel="stylesheet" href="static/style.css">
+
+    <!-- Responsive CSS -->
+    <link href="static/css/responsive.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  	<script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+
+
+
+
+</head>
+
+
+<body onload="loading()">
+
+
+<div id="wrapper">
+
+    <!-- ****** Header Area Start ****** -->
+    <header class="header_area">
+        <!-- Top Header Area Start -->
+        <div class="top_header_area">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center justify-content-end">
+
+                    <div class="col-12 col-lg-7">
+                        <div class="top_single_area d-flex align-items-center">
+                            <!-- Logo Area -->
+                            <div class="top_logo">
+                                <a href="#"><img src="static/img/core-img/logo.png" alt=""></a>
+                            </div>
+                            <!-- Cart & Menu Area -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Header Area End -->
+        <div class="main_header_area">
+            <div class="container h-100">
+                <div class="row h-100">
+                    <div class="col-12 d-md-flex justify-content-between">
+                        <!-- Header Social Area -->
+                        <div class="header-social-area">
+                            <a href="#"><span class="karl-level">Share</span> <i class="fa fa-pinterest"
+                                                                                 aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        </div>
+                        <!-- Menu Area -->
+                        <div class="main-menu-area">
+                            <nav class="navbar navbar-expand-lg align-items-start">
+
+                                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                        data-target="#karl-navbar" aria-controls="karl-navbar" aria-expanded="false"
+                                        aria-label="Toggle navigation"><span class="navbar-toggler-icon"><i
+                                        class="ti-menu"></i></span></button>
+
+                                <div class="collapse navbar-collapse align-items-start collapse" id="karl-navbar">
+                                    <ul class="navbar-nav animated" id="nav">
+                                        <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+                                        <li class="nav-item active"><a class="nav-link" href="/aboutUs">About Us</a>
+                                        </li>
+                                        <li class="nav-item active"><a class="nav-link" href="/cart">Cart</a></li>
+
+
+                                        <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                        <!-- Help Line -->
+                        <div class="help-line">
+                            <a href="https://api.whatsapp.com/send/?phone=%2B923077671304&text&app_absent=0"
+                               target="_blank"><i class="fa fa-whatsapp"></i> +92 307 7671304</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ****** Header Area End ****** -->
+
+    <script>
+        function loading() {
+            var myData
+            var tb = [];
+            var data = 'users';
+            $.ajax({
+                type: "GET",
+                url: "/orderdata",
+                data: data,
+                success: function (result) {
+                    myData = result
+                    console.log(myData)
+                    //alert(myData)
+                    if (myData != null || myData != "") {
+
+                        table = $('#usertable').DataTable({
+                            data: myData, destroy: true,
+                            columns: [
+                                {title: "Name"},
+                                {title: "Quantity"},
+                                {title: "Status"}
+                            ]
+                        });
+                    }
+
+                }
+            });
+        }
+
+    </script>
+
+
+    <div id="userdiv" class="card-footer">
+                    <table id="usertable" class="table table-hover" width="100%"></table>
+                    </div>
+
+
+</div>
+</body>
+</body>

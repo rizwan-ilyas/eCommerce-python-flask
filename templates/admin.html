@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="static/style1.css">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+
+
+
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  	<script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+
+
+</head>
+<body>
+
+    <input type="checkbox" id="sidebar-toggle">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3 class="brand">
+                <span class="ti-unlink"></span>
+                <span>Admin</span>
+            </h3>
+            <label for="sidebar-toggle" class="ti-menu-alt"></label>
+        </div>
+
+        <div class="sidebar-menu">
+            <ul>
+                <li id="home">
+                    <a href="/admin">
+                        <span class="ti-home"></span>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li id="user">
+                    <a href="#">
+                        <span class="ti-user"></span>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li id="seller">
+                    <a href="#">
+                        <span class="ti-dashboard"></span>
+                        <span>Sellers</span>
+                    </a>
+                </li>
+                <li id="product">
+                    <a href="#">
+                        <span class="ti-shopping-cart"></span>
+                        <span>Producs</span>
+                    </a>
+                </li>
+                <li id="logout">
+                    <a href="/logout">
+                        <span class="ti-power-off"></span>
+                        <span>Log Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var isUserClicked=false
+        var isSellerClicked=false
+        var isProductClicked=false
+        function loadUsers (e) {
+            var myData
+           //doStuff
+            if (isUserClicked==true){
+                $('#userdiv').hide("slow")
+                isUserClicked=false
+
+            }
+            else{
+                $('#userdiv').show("2000")
+            var tb=[];
+            var data = 'users';
+                         $.ajax({type:"GET",
+                                url:"/adminusers",
+                                data:data,
+
+                             success: function(result){
+                                for (let obj of result) {
+                                    obj.push("<button id="+obj[0]+ " class='btn btn-warning' onclick='deluser(this)' name='u' value='Delete'>delete</button>")
+                                    tb.push(obj)
+                                }
+
+                                 myData = tb
+                                 console.log(myData)
+                                 //alert(myData)
+                                 if(myData !=null || myData !=""){
+
+                                    table = $('#usertable').DataTable( {
+                                        data: myData ,destroy: true,
+                                        columns: [
+                                            { title: "Id" },
+                                            {title: "Name" },
+                                            { title: "Email" },
+                                            { title: "Status" },
+                                           { title: "Edit" },
+                                        ]
+                                    } );
+                                }
+
+                          }});
+                         isUserClicked=true
+                        updateColor(2)
+            }
+        }
+
+        function loadSeller(a){
+            var myData
+            if (isSellerClicked==true){
+                $('#sellerdiv').hide("slow")
+                isSellerClicked=false
+            }
+            else{
+                $('#sellerdiv').show("2000")
+            var tb=[];
+            var data = 'users';
+                         $.ajax({type:"GET",
+                                url:"/adminseller",
+                                data:data,
+
+                             success: function(result){
+                                for (let obj of result) {
+                                    obj.push("<button id="+obj[0]+ " class='btn btn-warning' onclick='deluser(this)' name='s' value='Delete'>delete</button>")
+                                    tb.push(obj)
+                                }
+
+                                 myData = tb
+                                 console.log(myData)
+                                 //alert(myData)
+                                 if(myData !=null || myData !=""){
+
+                                    table = $('#sellertable').DataTable( {
+                                        data: myData ,destroy: true,
+                                        columns: [
+                                            { title: "Id" },
+                                            {title: "Name" },
+                                            { title: "Email" },
+                                            { title: "Status" },
+                                            { title: "balance" },
+                                            { title: "Total # Products" },
+                                           { title: "Edit" },
+                                        ]
+                                    } );
+                                }
+
+                          }});
+                         isSellerClicked=true
+                            updateColor(3)
+            }
+
+        }
+
+        function loadProducts(a){
+            var myData
+            if (isProductClicked==true){
+                $('#productdiv').hide("slow")
+                isProductClicked=false
+            }
+            else{
+                $('#productdiv').show("2000")
+            var tb=[];
+            var data = 'users';
+                         $.ajax({type:"GET",
+                                url:"/adminproducts",
+                                data:data,
+                             success: function(result){
+                                for (let obj of result) {
+                                    obj.push("<button id="+obj[0]+"_"+obj[4]+ " class='btn btn-warning' onclick='delproduct(this)' value='Delete'>delete</button>")
+                                    tb.push(obj)
+                                }
+
+                                 myData = tb
+                                 console.log(myData)
+                                 //alert(myData)
+                                 if(myData !=null || myData !=""){
+
+                                    table = $('#producttable').DataTable( {
+                                        data: myData ,destroy: true,
+                                        columns: [
+                                            { title: "Id" },
+                                            {title: "Name" },
+                                            { title: "Price" },
+                                            { title: "Catagory" },
+                                            { title: "Seller ID" },
+                                            { title: "Entry Date" },
+                                           { title: "Edit" },
+                                        ]
+                                    } );
+                                }
+
+                          }});
+                         isProductClicked=true
+                        updateColor(4)
+            }
+
+        }
+        function updateColor(b){
+            document.getElementById('home').style.backgroundColor='transparent'
+                document.getElementById('user').style.backgroundColor='transparent'
+                document.getElementById('seller').style.backgroundColor='transparent'
+                document.getElementById('product').style.backgroundColor='transparent'
+            if (b=='1'){
+                document.getElementById('home').style.backgroundColor='red'
+                document.getElementById('home').style.borderRadius='7px'
+            }
+            else if(b=='2'){
+                document.getElementById('user').style.backgroundColor='red'
+                document.getElementById('user').style.borderRadius='7px'
+            }
+            else if(b=='3'){
+                document.getElementById('seller').style.backgroundColor='red'
+                document.getElementById('seller').style.borderRadius='7px'
+            }
+            else if(b=='4'){
+                document.getElementById('product').style.backgroundColor='red'
+                document.getElementById('product').style.borderRadius='7px'
+            }
+        }
+        function deluser(a){
+                        $.ajax({
+                                type:"POST",
+                                contentType:"application/json;charset=utf-8",
+                                url:"/delUser",
+                                data:JSON.stringify(a.id),
+                                success:function (){
+                                    console.log("Success!")
+                            },
+                                dataType:"json"
+                            });
+                        document.getElementById(a.id).parentNode.parentNode.remove()
+            if (a.name=='u'){
+                updatetotals(1)
+            }
+            else if(a.name='s'){
+                updatetotals(2)
+            }
+
+        }
+
+        function delproduct(a){
+                        $.ajax({
+                                type:"POST",
+                                contentType:"application/json;charset=utf-8",
+                                url:"/delProduct",
+                                data:JSON.stringify(a.id),
+                                success:function (){
+                                    console.log("Success!")
+                            },
+                                dataType:"json"
+                            });
+                        document.getElementById(a.id).parentNode.parentNode.remove()
+                        updatetotals(3)
+        }
+
+        function updatetotals(b){
+            if (b=='1'){
+                let a= document.getElementById('noUser').innerHTML-1
+                $('#noUser').text(a)
+            }
+            else if(b=='2'){
+                let a= document.getElementById('noSeller').innerText-1
+                $('#noSeller').text(a)
+            }
+            else if(b=='3'){
+                let a= document.getElementById('noProduct').innerText-1
+                $('#noProduct').text(a)
+            }
+
+        }
+
+
+
+    </script>
+    
+    <div class="main-content">
+        <main>
+            
+            <h2 class="dash-title">Dashboard</h2>
+            
+            <div class="dash-cards">
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="ti-user"></span>
+                        <div>
+                            <h5>Users</h5>
+                            <h4 id="noUser">{{ totals['user'] }}</h4>
+                        </div>
+                    </div>    
+                    <div class="card-footer">
+                        <a href="#" id="u" onclick="loadUsers()">View all</a>
+                    </div>
+                    <div id="userdiv" class="card-footer">
+                    <table id="usertable" class="table table-hover" width="100%"></table>
+                    </div>
+                </div>
+                
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="ti-dashboard"></span>
+                        <div>
+                            <h5>Sellers</h5>
+                            <h4 id="noSeller">{{ totals['seller'] }}</h4>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" id="s" onclick="loadSeller(this)">View all</a>
+                    </div>
+                    <div id="sellerdiv" class="card-footer">
+                    <table id="sellertable" class="table table-hover" width="100%"></table>
+                    </div>
+                </div>
+                
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="ti-shopping-cart"></span>
+                        <div>
+                            <h5>Products</h5>
+                            <h4 id="noProduct">{{ totals['product'] }}</h4>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" onclick="loadProducts(this)">View all</a>
+                    </div>
+                    <div id="productdiv" class="card-footer">
+                    <table id="producttable" class="table table-hover" width="100%"></table>
+                    </div>
+
+                </div>
+            </div>
+            
+            
+            
+            
+        </main>
+        
+    </div>
+    
+</body>
+</html>

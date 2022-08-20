@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+</head>
+<body>
+{{ error }}
+<a href="/">home</a>
+    <form action="/addProduct" method="post" enctype="multipart/form-data">
+        <input type="text" name="name" required/>
+        <input type="text" name="price" required/>
+        <textarea name="description" placeholder="enter details" required></textarea>
+        <select name="catagory" required>
+            <option value="mobiles">MOBILES</option>
+            <option value="electronics">ELECTRONICS</option>
+            <option value="accessories">ACCESSORIES</option>
+            <option value="woman">WOMAN</option>
+            <option value="man">MAN</option>
+            <option value="shoes">SHOES</option>
+            <option value="kids">KIDS</option>
+        </select>
+        <input type="number" name="quantity" required/>
+        <input type="text" name="discount"/>
+        <input type="file" name="product_image" required>
+        <input type="submit" name="sub" value="submitted">
+    </form>
+
+</body>
+</html>
